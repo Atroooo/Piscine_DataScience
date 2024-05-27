@@ -22,5 +22,5 @@ def ft_load(path: str) -> array:
         print("Image shape:", image_as_array.shape)
         return image_as_array
     except AssertionError as error:
-        print("\033[31m", AssertionError.__name__ + ":", error, "\033[0m")
+        print(AssertionError.__name__ + ":", error)
         return ""
