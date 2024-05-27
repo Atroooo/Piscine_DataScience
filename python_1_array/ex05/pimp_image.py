@@ -42,10 +42,8 @@ def ft_green(array) -> array:
         array: image with green colors
     """
     green_channel = array[:, :, 1]
-    image = array.copy()
-    image[:, :, 0] = 0
+    image = np.zeros_like(array)
     image[:, :, 1] = green_channel
-    image[:, :, 2] = 0
     ft_show(image)
 
 
@@ -73,9 +71,10 @@ def ft_grey(array) -> array:
     Returns:
         array: image with grey colors
     """
-    red_channel = array[:, :, 0] / 3
-    green_channel = array[:, :, 1] / 3
-    blue_channel = array[:, :, 2] / 3
+    div = 255 * 3
+    red_channel = array[:, :, 0] / div
+    green_channel = array[:, :, 1] / div
+    blue_channel = array[:, :, 2] / div
     grey_channel = red_channel + green_channel + blue_channel
     grey_image = np.stack([grey_channel, grey_channel, grey_channel], axis=2)
     ft_show(grey_image)
