@@ -1,7 +1,7 @@
 ft_list = ["Hello", "tata!"]
 ft_tuple = ("Hello", "toto!")
 ft_set = {"Hello", "tutu!"}
-ft_dict = {"Hello" : "titi!"}
+ft_dict = {"Hello": "titi!"}
 
 
 ft_list[1] = "World!"
@@ -17,12 +17,12 @@ ft_tuple = tuple(temp)
 class CustomHashObject:
     def __init__(self, value):
         self.value = value
-    
+
     def __hash__(self):
         if self.value == "Hello":
             return 0
         return 1
-    
+
     def __eq__(self, other):
         if isinstance(other, CustomHashObject):
             return self.value == other.value
@@ -30,6 +30,7 @@ class CustomHashObject:
 
     def __repr__(self):
         return f"{self.value!r}"
+
 
 obj1 = CustomHashObject("Hello")
 obj2 = CustomHashObject("Lyon!")

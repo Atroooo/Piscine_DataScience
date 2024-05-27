@@ -6,7 +6,6 @@ def NULL_not_found(object: any) -> int:
         '': "Empty",
         False: "Fake",
     }
-    
     type_name = object_list.get(object, "Type not Found")
 
     if type(object) is float and object != object:

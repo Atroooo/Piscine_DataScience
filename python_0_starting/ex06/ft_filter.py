@@ -8,7 +8,6 @@ def ft_filter(function, input):
     Returns:
         Returns a list of inputs that satisfy the function to apply.
     """
-    
     if function:
         return [x for x in input if function(x)]
     return [x for x in input if x]

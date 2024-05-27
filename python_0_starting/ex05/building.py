@@ -1,5 +1,6 @@
 import sys
 
+
 def count_char(str):
     """
     text (input string): The text to analyze
@@ -12,7 +13,6 @@ def count_char(str):
     5. The number of spaces
     6. The number of digits
     """
-    
     upper = lower = punct = spaces = digits = 0
     for char in str:
         if (char.isupper()):
@@ -25,8 +25,8 @@ def count_char(str):
             spaces += 1
         elif (char in "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"):
             punct += 1
-    
-    print("The text contains", len(str), "characters:")    
+
+    print("The text contains", len(str), "characters:")
     print(upper, "upper letters")
     print(lower, "lower letters")
     print(punct, "punctuation marks")
@@ -56,8 +56,7 @@ def main():
         count_char(s)
     except AssertionError as error:
         print(AssertionError.__name__ + ":", error)
-        
-        
+
 
 if __name__ == "__main__":
     main()
