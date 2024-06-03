@@ -1,7 +1,8 @@
 def ft_filter(function, input):
     """
     Description:
-        ft_filter(function, input) filters the input based on the function to apply.
+        ft_filter(function, input) filters the input based
+        on the function to apply.
     Args:
         function: function that returns a boolean value.
         input: list of input to be filtered.

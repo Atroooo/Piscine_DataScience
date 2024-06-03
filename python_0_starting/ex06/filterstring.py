@@ -11,12 +11,17 @@ def main():
     """
     try:
         if len(sys.argv) != 3:
-            raise AssertionError("AssertionError: the arguments are bad")
+            raise AssertionError()
         text = sys.argv[1]
         number = int(sys.argv[2])
 
         if not isinstance(text, str) or not isinstance(number, int):
-            raise AssertionError("Invalid argument types.")
+            raise AssertionError()
+
+        for letter in text:
+            if not letter.isalpha() and not letter.isspace() \
+                    and not letter.isdigit():
+                raise AssertionError()
 
         filtered_words = \
             list(ft_filter(lambda word: len(word) > number, text.split()))

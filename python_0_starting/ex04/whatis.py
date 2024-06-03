@@ -1,7 +1,7 @@
 import sys
 
+
 if len(sys.argv) > 2:
-    print(len(sys.argv))
     print("AssertionError: more than one argument is provided")
 elif len(sys.argv) == 0:
     exit(0)

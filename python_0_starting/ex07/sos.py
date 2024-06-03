@@ -32,13 +32,13 @@ def main():
     """
     try:
         if len(sys.argv) != 2:
-            raise AssertionError("AssertionError: the arguments are bad")
+            raise AssertionError()
         text = sys.argv[1]
         if not isinstance(text, str):
-            raise AssertionError("Invalid argument types.")
+            raise AssertionError()
         for char in text:
             if char.isalnum() is False and char != ' ':
-                raise AssertionError("Invalid argument types.")
+                raise AssertionError()
         morse_code = convert_to_morse(text)
         print(morse_code)
     except ValueError:

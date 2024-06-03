@@ -1,5 +1,4 @@
 def NULL_not_found(object: any) -> int:
-
     object_list = {
         None: "Nothing",
         '0': "Zero",
@@ -7,7 +6,6 @@ def NULL_not_found(object: any) -> int:
         False: "Fake",
     }
     type_name = object_list.get(object, "Type not Found")
-
     if type(object) is float and object != object:
         print(f"Cheese: {object} {type(object)}")
         return 0
