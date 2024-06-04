@@ -88,21 +88,3 @@ def ft_show(array):
     """
     plt.imshow(array)
     plt.show()
-
-
-def main():
-    """Main function to test the functions.
-    """
-    array = ft_load("landscape.jpg")
-    print(array)
-    ft_show(array)
-    ft_invert(array)
-    ft_red(array)
-    ft_green(array)
-    ft_blue(array)
-    ft_grey(array)
-    print(ft_invert.__doc__)
-
-
-if __name__ == "__main__":
-    main()

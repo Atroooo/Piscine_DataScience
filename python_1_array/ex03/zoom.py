@@ -30,15 +30,3 @@ def ft_zoom(array):
         plt.show()
     except Exception:
         print("Something went wrong.")
-
-
-def main():
-    """Main function to test the functions.
-    """
-    array = ft_load("animal.jpeg")
-    print(array)
-    ft_zoom(array)
-
-
-if __name__ == "__main__":
-    main()
