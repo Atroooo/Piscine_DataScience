@@ -1,4 +1,3 @@
-from load_csv import load
 import matplotlib.pyplot as plt
 
 
@@ -11,6 +10,8 @@ def projection_life(life_expectancy_data, income_data):
             the life expectancy
         income_data (pd.DataFrame): dataset containing the income data
     """
+    if life_expectancy_data is None or income_data is None:
+        return
     life_expectancy_1900 = life_expectancy_data['1900']
     gnp_1900 = income_data['1900']
 
@@ -22,16 +23,3 @@ def projection_life(life_expectancy_data, income_data):
     plt.xticks(ticks=[300, 1000, 10000], labels=['300', '1k', '10k'])
     plt.tight_layout()
     plt.show()
-
-
-def main():
-    """Main function to test the functions.
-    """
-    income_data = load(
-        "income_per_person_gdppercapita_ppp_inflation_adjusted.csv")
-    life_expectancy_data = load("life_expectancy_years.csv")
-    projection_life(life_expectancy_data, income_data)
-
-
-if __name__ == "__main__":
-    main()

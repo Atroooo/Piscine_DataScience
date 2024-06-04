@@ -24,6 +24,7 @@ def give_bmi(height: list[int | float],
             bmi.append(bmi_result)
     except Exception as error:
         print("Error:", error)
+        return []
     return bmi
 
 
@@ -47,4 +48,5 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
             above_limit.append(value > limit)
     except Exception as error:
         print("Error:", error)
+        return []
     return above_limit

@@ -21,6 +21,22 @@ class Character(ABC):
         """
         self.is_alive = False
 
+    def __str__(self):
+        """__str__ method
+
+        Returns:
+            str: string representation of the object
+        """
+        return f"Vector: ({self.family_name}, {self.eyes}, {self.hairs})"
+
+    def __repr__(self):
+        """__repr__ method
+
+        Returns:
+            str: representation of the object
+        """
+        return self.__str__()
+
 
 class Stark(Character):
     """Class representing a Stark character.

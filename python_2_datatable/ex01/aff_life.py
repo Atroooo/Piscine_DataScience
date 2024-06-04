@@ -1,4 +1,3 @@
-from load_csv import load
 from matplotlib import pyplot as plt
 
 
@@ -8,6 +7,8 @@ def aff_life(df):
     Args:
         df (pd.DataFrame): dataset containing the life expectancy data
     """
+    if df is None:
+        return
     data_france = df[df["country"] == "France"]
     life_france = data_france.values[0][1:]
     years = data_france.columns[1:]
@@ -21,14 +22,3 @@ def aff_life(df):
     plt.legend()
     plt.tight_layout()
     plt.show()
-
-
-def main():
-    """Main function to test the functions.
-    """
-    df = load("life_expectancy_years.csv")
-    aff_life(df)
-
-
-if __name__ == "__main__":
-    main()

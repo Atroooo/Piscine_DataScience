@@ -5,7 +5,7 @@ def NULL_not_found(object: any) -> int:
     elif type(object) is int and object == 0:
         print(f"Zero: {object} {type(object)}")
         return 0
-    elif type(object) is type(None) and object == object:
+    elif isinstance(object, type(None)) and object == object:
         print(f"Nothing: {object} {type(object)}")
         return 0
     elif type(object) is str and object == "":

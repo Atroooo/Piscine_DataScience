@@ -1,7 +1,6 @@
 from matplotlib import pyplot as plt
 from numpy import array
 import numpy as np
-from load_image import ft_load
 
 
 def ft_invert(array) -> array:

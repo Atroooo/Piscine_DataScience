@@ -40,7 +40,7 @@ class Lannister(Character):
         self.hairs = "light"
 
     def die(self):
-        """_summary_
+        """Kill the character.
         """
         self.is_alive = False
 

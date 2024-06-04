@@ -1,5 +1,4 @@
 from matplotlib import pyplot as plt
-from load_image import ft_load
 
 
 def ft_zoom(array):

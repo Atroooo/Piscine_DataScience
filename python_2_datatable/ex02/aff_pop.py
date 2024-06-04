@@ -1,4 +1,3 @@
-from load_csv import load
 from matplotlib import pyplot as plt
 
 
@@ -8,6 +7,8 @@ def aff_pop(df):
     Args:
         df (pd.DataFrame): dataset containing the population data
     """
+    if df is None:
+        return
     data_france = df[df['country'] == "France"].iloc[:, 1:]
     data_belgium = df[df['country'] == "Belgium"].iloc[:, 1:]
 
@@ -32,15 +33,3 @@ def aff_pop(df):
     plt.yticks(y_ticks, ["{:,.0f}M".format(pop / 1e6) for pop in y_ticks])
     plt.tight_layout()
     plt.show()
-
-
-def main():
-    """Main function to test the functions.
-    """
-    df = load("population_total.csv")
-    print(df.head(1))
-    aff_pop(df)
-
-
-if __name__ == "__main__":
-    main()
