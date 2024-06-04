@@ -10,5 +10,7 @@ all_thing_is_obj(ft_tuple)
 all_thing_is_obj(ft_set)
 all_thing_is_obj(ft_dict)
 all_thing_is_obj("Brian")
+all_thing_is_obj("00")
+all_thing_is_obj(0)
 
 print(all_thing_is_obj(10))

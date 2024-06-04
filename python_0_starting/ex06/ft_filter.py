@@ -1,14 +1,8 @@
 def ft_filter(function, input):
-    """
-    Description:
-        ft_filter(function, input) filters the input based
-        on the function to apply.
-    Args:
-        function: function that returns a boolean value.
-        input: list of input to be filtered.
-    Returns:
-        Returns a list of inputs that satisfy the function to apply.
-    """
+    """filter(function or None, iterable) --> filter object
+
+Return an iterator yielding those items of iterable for which function(item)
+is true. If function is None, return the items that are true."""
     if function:
         return [x for x in input if function(x)]
     return [x for x in input if x]

@@ -11,9 +11,6 @@ temp[1] = "France!"
 ft_tuple = tuple(temp)
 
 
-# ft_set.remove("tutu!")
-# ft_set.add("Lyon!")
-
 class CustomHashObject:
     def __init__(self, value):
         self.value = value
