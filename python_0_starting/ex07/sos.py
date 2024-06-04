@@ -37,7 +37,8 @@ def main():
         if not isinstance(text, str):
             raise AssertionError()
         for char in text:
-            if char.isalnum() is False and char != ' ':
+            if not char.isalpha() and not char.isspace() \
+                    and not char.isdigit():
                 raise AssertionError()
         morse_code = convert_to_morse(text)
         print(morse_code)
