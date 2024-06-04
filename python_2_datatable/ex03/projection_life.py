@@ -3,10 +3,13 @@ import matplotlib.pyplot as plt
 
 
 def projection_life(life_expectancy_data, income_data):
-    """Displays the country information versus other country information.
+    """Displays a scatter plot of the life expectancy based on
+        the income data in 1900
 
     Args:
-        df (pd.DataFrame): dataset containing the income data
+        life_expectancy_data (pd.DataFrame): dataset containing
+            the life expectancy
+        income_data (pd.DataFrame): dataset containing the income data
     """
     life_expectancy_1900 = life_expectancy_data['1900']
     gnp_1900 = income_data['1900']
