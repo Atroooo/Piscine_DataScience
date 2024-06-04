@@ -59,3 +59,5 @@ class Lannister(Character):
         instance = cls(first_name)
         instance.is_alive = is_alive
         return instance
+
+#faire str et repr
