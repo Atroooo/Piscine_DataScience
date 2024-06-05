@@ -19,6 +19,7 @@ class King(Baratheon, Lannister):
         Args:
             color (str): color of the eyes.
         """
+        assert isinstance(color, str), "eye color must be a str"
         self.eyes = color
 
     def set_hairs(self, color):
@@ -27,6 +28,7 @@ class King(Baratheon, Lannister):
         Args:
             color (str): color of the hairs.
         """
+        assert isinstance(color, str), "hair color must be a str"
         self.hairs = color
 
     def get_eyes(self):
