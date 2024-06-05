@@ -74,7 +74,7 @@ def ft_grey(array) -> array:
     red_channel = array[:, :, 0] / div
     green_channel = array[:, :, 1] / div
     blue_channel = array[:, :, 2] / div
-    grey_channel = red_channel + green_channel + blue_channel
+    grey_channel = np.add(red_channel, green_channel, blue_channel)
     grey_image = np.stack([grey_channel, grey_channel, grey_channel], axis=2)
     ft_show(grey_image)
 
