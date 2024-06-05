@@ -13,6 +13,8 @@ class Character(ABC):
             is_alive (bool, optional): set the character alive or not.
                 Defaults to True.
         """
+        assert isinstance(first_name, str) or \
+            isinstance(is_alive, bool), "__init__ only takes str, bool"
         self.first_name = first_name
         self.is_alive = is_alive
 
@@ -49,8 +51,7 @@ class Stark(Character):
             is_alive (bool, optional): set the character alive or not.
                 Defaults to True.
         """
-        self.first_name = first_name
-        self.is_alive = is_alive
+        super().__init__(first_name, is_alive)
 
     def die(self):
         """Kill the character.

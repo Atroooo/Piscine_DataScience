@@ -2,25 +2,22 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
     numbers = []
 
     for arg in args:
-        if isinstance(arg, int) or isinstance(arg, float):
+        if (isinstance(arg, int) or isinstance(arg, float)):
             numbers.append(arg)
-    
-    if (len(numbers) <= 0):
-        print("ERROR")
-        return
 
     for key, value in kwargs.items():
-        if (value == "mean"):
-            mean(numbers)
-        elif (value == "median"):
-            median(numbers)
-        elif (value == "quartile"):
-            quartile(numbers)
-        elif (value == "std"):
-            standard_deviation(numbers)
-        elif (value == "var"):
-            variance(numbers)
-        else:
+        try:
+            if (value == "mean"):
+                mean(numbers)
+            elif (value == "median"):
+                median(numbers)
+            elif (value == "quartile"):
+                quartile(numbers)
+            elif (value == "std"):
+                standard_deviation(numbers)
+            elif (value == "var"):
+                variance(numbers)
+        except Exception:
             print("ERROR")
 
 
@@ -37,7 +34,8 @@ def median(nb_list):
 
 
 def quartile(nb_list):
-    pass
+    nb_list = sorted(nb_list)
+    print(nb_list[int(len(nb_list) / 4)], nb_list[3 * int(len(nb_list) / 4)])
 
 
 def standard_deviation(nb_list):
