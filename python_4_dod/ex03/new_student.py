@@ -12,24 +12,18 @@ def generate_id() -> str:
 
 @dataclass
 class Student:
-    """
-    Represents information about students, including their name,
-    surname, active status, login, and a unique ID.
+    """Represents information about students, including their name,
+        surname, active status, login, and a unique ID.
 
-    Attributes:
-    - `name` (str): The first name of the student.
-    - `surname` (str): The last name or surname of the student.
-    - `active` (bool, optional): A boolean value indicating whether the
+    Args:
+        name (str): The first name of the student.
+        surname (str): The last name or surname of the student.
+        active (bool, optional): A boolean value indicating whether the
         student is active (default is `True`).
-    - `login` (str): The student's login, which is generated automatically
+        login (str): The student's login, which is generated automatically
         based on their name and surname.
-    - `id` (str): A unique identifier for the student, generated using the
+        id (str): A unique identifier for the student, generated using the
         `generate_id()` function.
-
-    Methods:
-    - `__post_init__(self)`: A constructor method that automatically generates
-        the student's login based on their name and surname.
-
     """
     name: str = field(init=True)
     surname: str = field(init=True)
@@ -38,6 +32,8 @@ class Student:
     id: str = field(init=False, default=generate_id())
 
     def __post_init__(self):
+        """Method that generate the login and check if the 
+            args passed are accepted"""
         assert isinstance(self.name, str), "name must be a string"
         assert isinstance(self.surname, str), "surname must be a string"
         self.login = self.name[0].capitalize() + self.surname.lower()

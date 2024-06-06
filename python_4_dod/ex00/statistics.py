@@ -1,8 +1,7 @@
 def ft_statistics(*args: any, **kwargs: any) -> None:
     """This function takes any number of arguments and keyword arguments and
     prints the result of the statistical operation
-    specified in the keyword arguments.
-    """
+    specified in the keyword arguments."""
     numbers = []
 
     for arg in args:
