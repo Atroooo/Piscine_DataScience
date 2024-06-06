@@ -1,0 +1,11 @@
+services:
+    postgres:
+        container_name: postgres
+        image: postgres:16.0-bookworm
+        environment:
+            - POSTGRES_DB=piscineds
+            - POSTGRES_USER=lcompieg
+            - POSTGRES_PASSWORD=mysecretpassword
+        ports:
+            - "5432:5432"
+        restart: always
