@@ -1,7 +1,6 @@
 class calculator:
     """Static class that allows to calculate the dot product,
-        add and subtract 2 vectors
-    """
+        add and subtract 2 vectors"""
     @staticmethod
     def dotproduct(V1: list[float], V2: list[float]) -> None:
         """Static method that calculates the dot product

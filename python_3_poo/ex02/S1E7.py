@@ -2,8 +2,7 @@ from S1E9 import Character
 
 
 class Baratheon(Character):
-    """Class representing the Baratheon family.
-    """
+    """Class representing the Baratheon family."""
 
     def __init__(self, first_name, is_alive=True):
         """Create a new character from the Baratheon family.
@@ -25,8 +24,8 @@ class Baratheon(Character):
 
 
 class Lannister(Character):
-    """Class representing a Lannister character.
-    """
+    """Class representing a Lannister character."""
+
     def __init__(self, first_name, is_alive=True):
         """Create a new character from the Lannister family.
 

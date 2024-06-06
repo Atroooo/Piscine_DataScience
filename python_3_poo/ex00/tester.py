@@ -14,4 +14,13 @@ Lyanna = Stark("Lyanna", False)
 print(Lyanna.__dict__)
 
 print("---")
-hodor = Character("hodor")
+try:
+    hodor = Character("hodor")
+except Exception as e:
+    print(e)
+
+print("---")
+try:
+    test = Stark(1)
+except Exception as e:
+    print(e)

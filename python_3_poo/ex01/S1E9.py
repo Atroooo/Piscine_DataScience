@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 
 
 class Character(ABC):
-    """Abstract class representing a character.
-    """
+    """Abstract class representing a character."""
+
     @abstractmethod
     def __init__(self, first_name, is_alive=True) -> None:
         """Create a new character.
@@ -13,8 +13,8 @@ class Character(ABC):
             is_alive (bool, optional): set the character alive or not.
                 Defaults to True.
         """
-        assert isinstance(first_name, str) or \
-            isinstance(is_alive, bool), "__init__ only takes str, bool"
+        assert isinstance(first_name, str), "__init__ only takes str, bool"
+        assert isinstance(is_alive, bool), "__init__ only takes str, bool"
         self.first_name = first_name
         self.is_alive = is_alive
 
@@ -41,8 +41,8 @@ class Character(ABC):
 
 
 class Stark(Character):
-    """Class representing a Stark character.
-    """
+    """Class representing a Stark character."""
+
     def __init__(self, first_name, is_alive=True) -> None:
         """Create a new character from the Stark family.
 
