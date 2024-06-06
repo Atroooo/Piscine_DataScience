@@ -16,7 +16,7 @@ def load(path: str) -> pd.DataFrame:
             raise AssertionError("Only csv formats are supported.")
         local_dir = os.path.dirname(__file__)
         file_path = os.path.join(local_dir, path)
-        if not os.path.exists(file_path):
+        if not os.path.exists(file_path) or os.path.isdir(file_path):
             raise AssertionError("File not found:", file_path)
         df = pd.read_csv(file_path)
         print("Dataset shape:", df.shape)
