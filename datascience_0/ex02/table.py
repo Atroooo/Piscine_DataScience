@@ -1,6 +1,5 @@
 import pandas as pd
 import psycopg2
-import re
 import os
 
 
@@ -27,34 +26,36 @@ def load(path: str) -> pd.DataFrame:
         return None
 
 
-def process_data(file: str) -> pd.DataFrame:
-    data = load(file)
-    assert data is not None, "data is empty"
-    try:
-        data['event_time'] = pd.to_datetime(data['event_time'])
-    except Exception as e:
-        print(e)
-        return None
-    return data
-
-
 def create_columns(data: pd.DataFrame) -> str:
+    """Create the columns for the table.
+
+    Args:
+        data (pd.DataFrame): data from the CSV file
+
+    Returns:
+        str: columns for the table
+    """
     res = ''
     columns = data.columns
     type_data = data.dtypes
     for column in columns:
         res += column + ' ' + str(type_data[column]) + ', '
-    res = re.sub(r"[\(\[].*?[\)\]]", "", res)
-    for c in res:
-        if not c.isalpha() and not c.isdigit() and not c.isspace() \
-                and c not in ",_":
-            res = res.replace(c, '')
     return res[:-2]
 
 
 def create_table(conn: object, cursor: object, table_name: str,
-                 data: pd.DataFrame) -> None:
-    
+                 data: pd.DataFrame) -> bool:
+    """Create a table in the database.
+
+    Args:
+        conn (object): database connection
+        cursor (object): database cursor
+        table_name (str): name of the table
+        data (pd.DataFrame): data from the CSV file
+
+    Returns:
+        bool: Return True if the table is created, False otherwise
+    """
     columns = create_columns(data)
     command = \
         '''CREATE TABLE IF NOT EXISTS {name}({columns})''' \
@@ -68,7 +69,15 @@ def create_table(conn: object, cursor: object, table_name: str,
     return True
 
 
-def insert_data_in_db() -> None:
+def insert_data_in_db(path: str, table_name: str) -> None:
+    """Insert data into the database.
+
+    Args:
+        path (str): Path to the CSV file
+        tableName (str): Name of the table
+    """
+    assert isinstance(path, str) or isinstance(table_name, str), \
+        "Path and table_name must be a string"
     conn = psycopg2.connect(
         database="piscineds",
         user='lcompieg',
@@ -78,29 +87,10 @@ def insert_data_in_db() -> None:
     )
     cursor = conn.cursor()
 
-    data_2022_oct = \
-        process_data("/home/lcompieg/sgoinfre/data_2022_oct.csv")
-    assert create_table(conn, cursor, "data_2022_oct", data_2022_oct), \
+    data_2022_oct = load(path)
+    assert create_table(conn, cursor, table_name, data_2022_oct), \
         "Something went wrong"
     data_2022_oct.to_sql('data_2022_oct', con=conn, if_exists='replace')
-
-    data_2022_nov = \
-        process_data("/home/lcompieg/sgoinfre/data_2022_nov.csv")
-    assert create_table(conn, cursor, "data_2022_nov", data_2022_nov), \
-        "Something went wrong"
-    data_2022_nov.to_sql('data_2022_nov', con=conn, if_exists='replace')
-
-    data_2022_dec = \
-        process_data("/home/lcompieg/sgoinfre/data_2022_dec.csv")
-    assert create_table(conn, cursor, "data_2022_dec", data_2022_dec), \
-        "Something went wrong"
-    data_2022_dec.to_sql('data_2022_dec', con=conn, if_exists='replace')
-
-    data_2023_jan = \
-        process_data("/home/lcompieg/sgoinfre/data_2023_jav.csv")
-    assert create_table(conn, cursor, "data_2023_jan", data_2023_jan), \
-        "Something went wrong"
-    data_2023_jan.to_sql('data_2023_jan', con=conn, if_exists='replace')
 
     conn.commit()
     conn.close()
@@ -109,7 +99,8 @@ def insert_data_in_db() -> None:
 def main():
     """Main function to test the functions.
     """
-    insert_data_in_db()
+    insert_data_in_db("/home/lcompieg/sgoinfre/data_2022_oct.csv",
+                      "data_2022_oct")
 
 
 if __name__ == "__main__":
