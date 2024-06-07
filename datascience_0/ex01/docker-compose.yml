@@ -4,9 +4,9 @@ services:
         image: postgres:12.3-alpine
         restart: always
         environment:
-            POSTGRES_DB: postgres
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: piscineds
+            POSTGRES_USER: lcompieg
+            POSTGRES_PASSWORD: mysecretpassword
         ports:
             - "5432:5432"
         volumes:
