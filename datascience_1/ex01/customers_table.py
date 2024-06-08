@@ -34,12 +34,13 @@ def insert_in_table(engine: object, data: pd.DataFrame) -> None:
                 if_exists='append')
 
 
-def join_df(engine: object, tables: list) -> None:
+def join_tables(engine: object, tables: list) -> None:
     assert isinstance(tables, list), "join_df take list as parameter"
     for table in tables:
         try:
             temp_df = get_table_from_db(engine, table)
             insert_in_table(engine, temp_df)
+            print(f"{table} has been added to customers")
         except Exception as e:
             print(e)
             return
@@ -53,7 +54,8 @@ def main():
             "postgresql://lcompieg:mysecretpassword@localhost:5432/piscineds")
         connection = engine.connect()
         tables = get_all_table(connection, "data_20")
-        join_df(engine, tables)
+        join_tables(engine, tables)
+        engine.dispose()
     except Exception as e:
         print(e)
         return
