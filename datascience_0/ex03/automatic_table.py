@@ -58,12 +58,22 @@ def insert_data_in_db(path: str, table_name: str) -> None:
         print(e)
 
 
+def create_tables(path: str) -> None:
+    files = os.listdir(path)
+    for file in files:
+        table_name = file.split('.')
+        if (len(table_name) > 2):
+            print("Error in file name ", file)
+            continue
+        insert_data_in_db(path + str(file), table_name[0])
+
+
 def main():
     """Main function to test the functions.
     """
-    insert_data_in_db("/home/lcompieg/sgoinfre/data_2022_oct.csv",
-                      "data_2022_oct")
-
+    path = "/home/lcompieg/sgoinfre/custom/"
+    create_tables(path)
+    
 
 if __name__ == "__main__":
     main()
