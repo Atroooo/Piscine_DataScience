@@ -61,9 +61,9 @@ def insert_data_in_db(path: str, table_name: str) -> None:
 def main():
     """Main function to test the functions.
     """
-    # insert_data_in_db("/home/lcompieg/sgoinfre/custom/data_2022_oct.csv",
-    #                   "data_2022_oct")
-    print(os.listdir("/home/lcompieg/sgoinfre/custom/"))
+    insert_data_in_db("/home/lcompieg/sgoinfre/data_2022_oct.csv",
+                      "data_2022_oct")
+
 
 if __name__ == "__main__":
     main()
