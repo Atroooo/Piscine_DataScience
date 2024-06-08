@@ -32,7 +32,7 @@ class Student:
     id: str = field(init=False, default=generate_id())
 
     def __post_init__(self):
-        """Method that generate the login and check if the 
+        """Method that generate the login and check if the
             args passed are accepted"""
         assert isinstance(self.name, str), "name must be a string"
         assert isinstance(self.surname, str), "surname must be a string"
