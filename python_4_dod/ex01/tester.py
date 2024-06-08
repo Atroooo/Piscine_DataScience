@@ -12,3 +12,9 @@ another_counter = outer(1.5, pow)
 print(another_counter())
 print(another_counter())
 print(another_counter())
+print("---")
+try:
+    another_counter1 = outer("test", pow)
+    print(another_counter1())
+except Exception as e:
+    print(e)

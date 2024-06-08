@@ -33,8 +33,8 @@ def outer(x: int | float, function) -> object:
         object: The function that applies the given function to the number.
     """
     assert callable(function), "The function argument is not callable."
-    assert isinstance(x, (int, float)), "The x argument should be an \
-        integer or a float."
+    assert isinstance(x, (int, float)), \
+        "The x argument should be an integer or a float."
 
     def inner() -> float:
         """Inner function that applies the given function to the number.
