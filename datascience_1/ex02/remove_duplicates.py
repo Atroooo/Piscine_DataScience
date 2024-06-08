@@ -56,6 +56,7 @@ def main():
     try:
         files = get_all_files(path)
         df = join_df(files, path)
+        df = df.drop_duplicates()
     except Exception as e:
         print(e)
         return
