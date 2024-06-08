@@ -49,6 +49,8 @@ def join_df(files: list, path: str) -> pd.DataFrame:
 
 
 def fusion_items(df: pd.DataFrame) -> pd.DataFrame:
+    assert isinstance(df, pd.DataFrame), \
+        "df must be a pd.DataFrame object"
     items = load("/home/lcompieg/sgoinfre/item/item.csv")
     df = df.merge(items, on="product_id", how='left')
     df = df.drop_duplicates()
