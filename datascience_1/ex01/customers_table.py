@@ -4,6 +4,7 @@ import sqlalchemy
 
 
 def get_table_from_db(table_name: str) -> pd.DataFrame:
+    #Get les tables SELECT * FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';
     engine = sqlalchemy.create_engine(
             "postgresql://lcompieg:mysecretpassword@localhost:5432/piscineds")
     return pd.read_sql_query(f'select * from {table_name}', con=engine)
