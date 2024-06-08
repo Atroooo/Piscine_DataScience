@@ -1,28 +1,12 @@
 import os
 import pandas as pd
+import sqlalchemy
 
 
-def load(path: str) -> pd.DataFrame:
-    """Load a CSV file into a Dataset object.
-
-    Args:
-        path (str): path to the CSV file
-
-    Returns:
-        Dataset: object containing the data
-    """
-    try:
-        if not path.lower().endswith(("csv")):
-            raise AssertionError("Only csv formats are supported.")
-        local_dir = os.path.dirname(__file__)
-        file_path = os.path.join(local_dir, path)
-        if not os.path.exists(file_path) or os.path.isdir(file_path):
-            raise AssertionError("File not found:", file_path)
-        df = pd.read_csv(file_path)
-        return df
-    except AssertionError as error:
-        print(f"{AssertionError.__name__}: {error}")
-        return None
+def get_table_from_db(table_name: str) -> pd.DataFrame:
+    engine = sqlalchemy.create_engine(
+            "postgresql://lcompieg:mysecretpassword@localhost:5432/piscineds")
+    return pd.read_sql_query(f'select * from {table_name}', con=engine)
 
 
 def get_all_files(path: str) -> list:
@@ -39,7 +23,7 @@ def join_df(files: list, path: str) -> pd.DataFrame:
     final_df = pd.DataFrame()
     for file in files:
         try:
-            temp_df = load(path + str(file))
+            # temp_df = load(path + str(file))
             final_df = pd.concat([final_df, temp_df])
         except Exception as e:
             print(e)
@@ -53,12 +37,13 @@ def main():
     """
     path = "/home/lcompieg/sgoinfre/custom/"
     try:
-        files = get_all_files(path)
-        df = join_df(files, path)
+        # files = get_all_files(path)
+        print(get_table_from_db("data_2022_oct"))
+        # df = join_df(files, path)
     except Exception as e:
         print(e)
         return
-    print(df.head(-5))
+    # print(df.head(-5))
 
 
 if __name__ == "__main__":
