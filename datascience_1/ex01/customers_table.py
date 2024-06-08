@@ -21,7 +21,7 @@ def get_all_table(connection: object, name: str) -> list:
     return table_list
 
 
-def create_table(engine: object, data: pd.DataFrame) -> None:
+def insert_in_table(engine: object, data: pd.DataFrame) -> None:
     data_types = {
             "event_time": sqlalchemy.DateTime(),
             "event_type": sqlalchemy.types.String(length=255),
@@ -31,24 +31,18 @@ def create_table(engine: object, data: pd.DataFrame) -> None:
             "user_session": sqlalchemy.types.UUID(as_uuid=True)
         }
     data.to_sql("customers", engine, index=False, dtype=data_types,
-                if_exists='replace')
+                if_exists='append')
 
 
-def join_df(engine: object, tables: list) -> pd.DataFrame:
+def join_df(engine: object, tables: list) -> None:
     assert isinstance(tables, list), "join_df take list as parameter"
-    final_df = pd.DataFrame()
     for table in tables:
         try:
             temp_df = get_table_from_db(engine, table)
-            final_df = pd.concat([final_df, temp_df])
+            insert_in_table(engine, temp_df)
         except Exception as e:
             print(e)
-            return None
-    print("Before sort")
-    final_df = final_df.sort_values(by=['event_time'])
-    print("Final dataFrame created")
-    create_table(engine, final_df)
-    return final_df
+            return
 
 
 def main():
@@ -59,7 +53,7 @@ def main():
             "postgresql://lcompieg:mysecretpassword@localhost:5432/piscineds")
         connection = engine.connect()
         tables = get_all_table(connection, "data_20")
-        df = join_df(engine, tables)
+        join_df(engine, tables)
     except Exception as e:
         print(e)
         return
