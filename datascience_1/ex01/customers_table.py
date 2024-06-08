@@ -52,7 +52,6 @@ def main():
     """Main function to test the functions.
     """
     path = "/home/lcompieg/sgoinfre/custom/"
-    files = list
     try:
         files = get_all_files(path)
         df = join_df(files, path)

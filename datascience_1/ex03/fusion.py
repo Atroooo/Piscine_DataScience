@@ -48,6 +48,14 @@ def join_df(files: list, path: str) -> pd.DataFrame:
     return final_df
 
 
+def fusion_items(df: pd.DataFrame) -> pd.DataFrame:
+    items = load("/home/lcompieg/sgoinfre/item/item.csv")
+    df = df.merge(items, on="product_id", how='left')
+    df = df.drop_duplicates()
+    df = df.sort_values(by=['event_time'])
+    return df
+
+
 def main():
     """Main function to test the functions.
     """
@@ -55,7 +63,7 @@ def main():
     try:
         files = get_all_files(path)
         df = join_df(files, path)
-        df = df.drop_duplicates()
+        df = fusion_items(df)
     except Exception as e:
         print(e)
         return
