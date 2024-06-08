@@ -2,11 +2,11 @@ import pandas as pd
 import sqlalchemy
 
 
-def get_table_from_db(engine: object, table_name: str) -> pd.DataFrame:
+def get_table_data_from_db(engine: object, table_name: str) -> pd.DataFrame:
     return pd.read_sql_query(f'select * from {table_name}', con=engine)
 
 
-def get_all_table(connection: object, name: str) -> list:
+def get_all_table_names(connection: object, name: str) -> list:
     sql = sqlalchemy.text(
         'SELECT * FROM pg_catalog.pg_tables WHERE schemaname != \'pg_catalog\'\
         AND schemaname != \'information_schema\'')
@@ -38,7 +38,7 @@ def join_tables(engine: object, tables: list) -> None:
     assert isinstance(tables, list), "join_df take list as parameter"
     for table in tables:
         try:
-            temp_df = get_table_from_db(engine, table)
+            temp_df = get_table_data_from_db(engine, table)
             insert_in_table(engine, temp_df)
             print(f"{table} has been added to customers")
         except Exception as e:
@@ -53,7 +53,7 @@ def main():
         engine = sqlalchemy.create_engine(
             "postgresql://lcompieg:mysecretpassword@localhost:5432/piscineds")
         connection = engine.connect()
-        tables = get_all_table(connection, "data_20")
+        tables = get_all_table_names(connection, "data_20")
         join_tables(engine, tables)
         engine.dispose()
     except Exception as e:
