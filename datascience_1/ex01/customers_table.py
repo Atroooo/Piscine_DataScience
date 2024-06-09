@@ -3,6 +3,15 @@ import sqlalchemy
 
 
 def get_table_data_from_db(engine: object, table_name: str) -> pd.DataFrame:
+    """Get data from a table in the database.
+
+    Args:
+        engine (object): database engine
+        table_name (str): name of the table
+
+    Returns:
+        pd.DataFrame: data from the table
+    """
     return pd.read_sql_query(f'select * from {table_name}', con=engine)
 
 
@@ -22,6 +31,12 @@ def get_all_table_names(connection: object, name: str) -> list:
 
 
 def insert_in_table(engine: object, data: pd.DataFrame) -> None:
+    """Insert data into the database.
+
+    Args:
+        engine (object): database engine
+        data (pd.DataFrame): data to insert
+    """
     data_types = {
             "event_time": sqlalchemy.DateTime(),
             "event_type": sqlalchemy.types.String(length=255),
@@ -35,6 +50,12 @@ def insert_in_table(engine: object, data: pd.DataFrame) -> None:
 
 
 def join_tables(engine: object, tables: list) -> None:
+    """Join tables and insert the data into the customers table.
+
+    Args:
+        engine (object): database engine
+        tables (list): list of table's names to join
+    """
     assert isinstance(tables, list), "join_df take list as parameter"
     for table in tables:
         try:

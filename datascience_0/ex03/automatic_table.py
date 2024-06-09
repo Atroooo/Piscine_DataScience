@@ -59,6 +59,11 @@ def insert_data_in_db(path: str, table_name: str) -> None:
 
 
 def create_tables(path: str) -> None:
+    """Create tables in the database.
+
+    Args:
+        path (str): Path to the CSV files
+    """
     files = os.listdir(path)
     for file in files:
         table_name = file.split('.')
@@ -73,7 +78,7 @@ def main():
     """
     path = "/home/lcompieg/sgoinfre/custom/"
     create_tables(path)
-    
+
 
 if __name__ == "__main__":
     main()
