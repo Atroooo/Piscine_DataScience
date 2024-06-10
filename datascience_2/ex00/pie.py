@@ -7,7 +7,8 @@ def main():
     """
     engine = sqlalchemy.create_engine(
             "postgresql://lcompieg:mysecretpassword@localhost:5432/piscineds")
-    data = pd.read_sql_query(f'select * from customers', con=engine)
+    data = pd.read_sql_query('select * from customers', con=engine)
+
 
 
 if __name__ == "__main__":
