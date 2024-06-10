@@ -9,11 +9,13 @@ def main():
             "postgresql://lcompieg:mysecretpassword@localhost:5432/piscineds")
         connection = engine.connect()
         sql = sqlalchemy.text(
-            'CREATE TEMPORARY TABLE tmp AS SELECT DISTINCT * FROM customers; \
-                TRUNCATE customers; \
-                INSERT INTO customers SELECT * FROM tmp; \
-                DROP TABLE tmp;')
+            'CREATE TABLE tmp AS SELECT DISTINCT * FROM customers; \
+                DROP TABLE customers; \
+                ALTER TABLE tmp RENAME TO customers;')
+        print("Deleting duplicates...")
         connection.execute(sql)
+        print("Done")
+        connection.commit()
         engine.dispose()
     except Exception as e:
         print(e)
