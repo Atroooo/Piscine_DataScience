@@ -13,7 +13,6 @@ def main():
             'SELECT * \
             FROM customers \
             ORDER BY event_time DESC;'
-            
         )
         connection.execute(sql_sort)
         print("Renaming table....")
