@@ -9,13 +9,16 @@ def reset_list(data: list) -> list:
 
 
 def insert_in_db(connection: object, data_list: tuple) -> None:
+    values = ''
     for data in data_list:
         if (data[5] == 'None'):
             data = list(data)
             data[5] = '253ac7e2-280a-11ef-8228-d32bf4e3526b'
             data = tuple(data)
-        sql = sqlalchemy.text(f"INSERT INTO customers VALUES {data}")
-        connection.execute(sql)
+        values += str(data) + ", "
+    values = values[:-2]
+    sql = sqlalchemy.text(f"INSERT INTO customers VALUES {values};")
+    connection.execute(sql)
 
 
 def delete_duplicates(cur: object, connection: object) -> None:
@@ -27,8 +30,9 @@ def delete_duplicates(cur: object, connection: object) -> None:
         if (nxt_row is None):
             data_list.append((str(row[0]), str(row[1]), str(row[2]),
                              str(row[3]), str(row[4]), str(row[5])))
-            print(len(data_list), " remaining....")
+            size = len(data_list)
             insert_in_db(connection, data_list)
+            print(f"{count}{size} Done !")
             break
 
         if (len(data_list) == 100000):
@@ -76,7 +80,6 @@ def main():
 
         print("Deleting rest of duplicates....")
         delete_duplicates(cur, connection)
-
         connection.commit()
         engine.dispose()
     except Exception as e:
