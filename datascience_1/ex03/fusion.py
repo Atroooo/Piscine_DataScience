@@ -23,7 +23,7 @@ def main():
         connection.execute(sql_rename)
         print("Merging...")
         sql_merge = sqlalchemy.text(
-            'SELECT customers_base.product_id, \
+            'SELECT customers_base.event_time, \
                     customers_base.event_type, \
                     customers_base.price, \
                     customers_base.user_id, \
