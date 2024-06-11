@@ -51,6 +51,7 @@ def insert_data_in_db(path: str, table_name: str) -> None:
             "user_id": sqlalchemy.types.BigInteger(),
             "user_session": sqlalchemy.types.UUID(as_uuid=True)
         }
+        print(f"Creating {table_name}")
         data.to_sql(table_name, engine, index=False, dtype=data_types,
                     if_exists='replace')
         engine.dispose()
