@@ -49,7 +49,7 @@ def insert_data_in_db(path: str, table_name: str) -> None:
             "category_code": sqlalchemy.types.String(length=255),
             "brand": sqlalchemy.types.String(length=255)
         }
-        data = data.drop_duplicates()
+        data = data.drop_duplicates(keep="first", subset=['product_id'])
         data.to_sql(table_name, engine, index=False, dtype=data_types,
                     if_exists='replace')
         engine.dispose()

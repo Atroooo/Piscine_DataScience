@@ -13,7 +13,7 @@ def insert_in_db(connection: object, data_list: tuple) -> None:
     for data in data_list:
         if (data[5] == 'None'):
             data = list(data)
-            data[5] = '253ac7e2-280a-11ef-8228-d32bf4e3526b' #put null ?
+            data[5] = '253ac7e2-280a-11ef-8228-d32bf4e3526b'
             data = tuple(data)
         values += str(data) + ", "
     values = values[:-2]

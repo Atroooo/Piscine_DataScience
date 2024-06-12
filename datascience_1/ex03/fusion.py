@@ -33,8 +33,8 @@ def main():
                     items.category_code, \
                     items.brand \
             INTO customers \
-            FROM items \
-            FULL OUTER JOIN customers_base \
+            FROM customers_base \
+            LEFT OUTER JOIN items \
             ON customers_base.product_id = items.product_id;'
         )
         connection.execute(sql_merge)
