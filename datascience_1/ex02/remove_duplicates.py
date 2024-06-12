@@ -46,12 +46,11 @@ def delete_duplicates(cur: object, connection: object) -> None:
                 row[5] != nxt_row[5]):
             data_list.append((str(row[0]), str(row[1]), str(row[2]),
                              str(row[3]), str(row[4]), str(row[5])))
-            row = nxt_row
         else:
             if (abs(row[0] - nxt_row[0]).total_seconds() > 1):
                 data_list.append((str(row[0]), str(row[1]), str(row[2]),
                                  str(row[3]), str(row[4]), str(row[5])))
-                row = nxt_row
+        row = nxt_row
 
 
 def main():
@@ -77,7 +76,6 @@ def main():
                                         user_session, \
                                         event_time DESC;')
         cur = connection.execute(sql_get_tmp)
-
         print("Deleting rest of duplicates....")
         delete_duplicates(cur, connection)
         connection.commit()
