@@ -1,4 +1,4 @@
-Piscine DataScience is a 42's project that aims to introduce us to data science's libraries and machine learning in Python.
+Piscine DataScience is a 42's project that aims to introduce us to data science's libraries and machine learning.
 In this project we use : Python and SQL.
 
 There is 2 parts in this projects :
